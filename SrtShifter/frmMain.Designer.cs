@@ -44,11 +44,13 @@
             btnSelectVideoFile.TabIndex = 0;
             btnSelectVideoFile.Text = "Select Video File...";
             btnSelectVideoFile.UseVisualStyleBackColor = true;
+            btnSelectVideoFile.Click += btnSelectVideoFile_Click;
             // 
             // txtVideoFilePath
             // 
             txtVideoFilePath.Location = new Point(210, 12);
             txtVideoFilePath.Name = "txtVideoFilePath";
+            txtVideoFilePath.ReadOnly = true;
             txtVideoFilePath.Size = new Size(578, 31);
             txtVideoFilePath.TabIndex = 1;
             // 
@@ -56,6 +58,7 @@
             // 
             txtSrtFilePath.Location = new Point(210, 52);
             txtSrtFilePath.Name = "txtSrtFilePath";
+            txtSrtFilePath.ReadOnly = true;
             txtSrtFilePath.Size = new Size(578, 31);
             txtSrtFilePath.TabIndex = 3;
             // 
@@ -67,6 +70,7 @@
             btnSelectSrtFile.TabIndex = 2;
             btnSelectSrtFile.Text = "Select Srt File...";
             btnSelectSrtFile.UseVisualStyleBackColor = true;
+            btnSelectSrtFile.Click += btnSelectSrtFile_Click;
             // 
             // txtLogText
             // 
@@ -85,6 +89,7 @@
             btnProcess.TabIndex = 5;
             btnProcess.Text = "Process";
             btnProcess.UseVisualStyleBackColor = true;
+            btnProcess.Click += btnProcess_Click;
             // 
             // frmMain
             // 
