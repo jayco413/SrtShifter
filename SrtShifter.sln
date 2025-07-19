@@ -5,6 +5,8 @@ VisualStudioVersion = 17.14.36310.24 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SrtShifter", "SrtShifter\SrtShifter.csproj", "{48C4664A-361C-4A82-93D4-0B2212E77DE7}"
 EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "SrtShifterSetup", "SrtShifterSetup\SrtShifterSetup.wixproj", "{51487389-D89D-45DB-ACF5-2514AAD6FD9E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -14,8 +16,12 @@ Global
 		{48C4664A-361C-4A82-93D4-0B2212E77DE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{48C4664A-361C-4A82-93D4-0B2212E77DE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48C4664A-361C-4A82-93D4-0B2212E77DE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{48C4664A-361C-4A82-93D4-0B2212E77DE7}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
+                {48C4664A-361C-4A82-93D4-0B2212E77DE7}.Release|Any CPU.Build.0 = Release|Any CPU
+                {51487389-D89D-45DB-ACF5-2514AAD6FD9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+                {51487389-D89D-45DB-ACF5-2514AAD6FD9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+                {51487389-D89D-45DB-ACF5-2514AAD6FD9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+                {51487389-D89D-45DB-ACF5-2514AAD6FD9E}.Release|Any CPU.Build.0 = Release|Any CPU
+        EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection

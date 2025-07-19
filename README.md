@@ -18,6 +18,18 @@ The application targets **.NET 8.0** and requires the .NET SDK. You can use the 
  dotnet build SrtShifter.sln
 ```
 
+### Building the Installer
+
+The solution contains a WiX based setup project under `SrtShifterSetup`.
+Build it to create an MSI installer:
+
+```bash
+dotnet build SrtShifterSetup/SrtShifterSetup.wixproj
+```
+
+The generated `SrtShifterSetup.msi` can then be used to install the
+application on a Windows machine.
+
 ## Running
 
 Run the program from the command line or start it from Visual Studio:
