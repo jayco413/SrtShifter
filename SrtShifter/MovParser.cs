@@ -14,16 +14,28 @@ namespace SrtShifter
         public static TimeSpan GetDuration(Stream stream)
         {
             using var br = new BinaryReader(stream, System.Text.Encoding.UTF8, leaveOpen: true);
-            long fileSize = stream.Length;
-            while (stream.Position < fileSize)
+            if (TryFindMvhd(br, stream.Length, out var duration))
             {
+                return duration;
+            }
+            throw new InvalidDataException("mvhd box not found");
+        }
+
+        private static bool TryFindMvhd(BinaryReader br, long end, out TimeSpan duration)
+        {
+            duration = default;
+            var stream = br.BaseStream;
+            while (stream.Position < end)
+            {
+                long boxStart = stream.Position;
                 long size = ReadUInt32BE(br);
                 string type = new string(br.ReadChars(4));
                 if (size == 1)
                 {
                     size = (long)ReadUInt64BE(br);
                 }
-                long payloadStart = stream.Position;
+                long payloadEnd = boxStart + size;
+
                 if (type == "mvhd")
                 {
                     byte version = br.ReadByte();
@@ -33,22 +45,32 @@ namespace SrtShifter
                         br.ReadUInt32(); // creation
                         br.ReadUInt32(); // modification
                         uint timescale = ReadUInt32BE(br);
-                        uint duration = ReadUInt32BE(br);
-                        return TimeSpan.FromSeconds(duration / (double)timescale);
+                        uint dur = ReadUInt32BE(br);
+                        duration = TimeSpan.FromSeconds(dur / (double)timescale);
+                        return true;
                     }
                     else if (version == 1)
                     {
                         br.ReadUInt64();
                         br.ReadUInt64();
                         uint timescale = ReadUInt32BE(br);
-                        ulong duration = ReadUInt64BE(br);
-                        return TimeSpan.FromSeconds(duration / (double)timescale);
+                        ulong dur = ReadUInt64BE(br);
+                        duration = TimeSpan.FromSeconds(dur / (double)timescale);
+                        return true;
                     }
                 }
+                else if (type == "moov")
+                {
+                    if (TryFindMvhd(br, payloadEnd, out duration))
+                    {
+                        return true;
+                    }
+                }
+
                 // skip to next box
-                stream.Position = payloadStart + size - 8;
+                stream.Position = payloadEnd;
             }
-            throw new InvalidDataException("mvhd box not found");
+            return false;
         }
 
         private static uint ReadUInt32BE(BinaryReader br)
