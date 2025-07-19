@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Package InstallerVersion="500" Compressed="yes" InstallScope="perMachine" />
+  <MediaTemplate />
+  <Product Id="*" Name="SrtShifter" Language="1033" Version="1.0.0" Manufacturer="SrtShifter" UpgradeCode="12345678-1234-1234-1234-123456789ABC">
+    <MajorUpgrade DowngradeErrorMessage="A later version of SrtShifter is already installed." />
+    <Feature Id="ProductFeature" Title="SrtShifter" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+    </Feature>
+  </Product>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="SrtShifter" />
+      </Directory>
+    </Directory>
+  </Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <Component Id="MainExecutable" Guid="*">
+        <File Source="$(var.SrtShifter.TargetPath)" KeyPath="yes" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>
