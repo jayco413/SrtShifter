@@ -1,9 +1,12 @@
 namespace SrtShifter
 {
+    /// <summary>
+    /// Application entry point class.
+    /// </summary>
     internal static class Program
     {
         /// <summary>
-        ///  The main entry point for the application.
+        /// Starts the Windows Forms application.
         /// </summary>
         [STAThread]
         static void Main()

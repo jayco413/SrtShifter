@@ -63,10 +63,10 @@ Use XML documentation comments (`///`) for:
 
 ## Optional Tags
 
-- `<remarks>` � Additional detail not suited for `<summary>`
-- `<example>` � Code usage examples
-- `<see>` � Cross-reference another member (`<see cref="OtherMethod"/>`)
-- `<seealso>` � External or related types
+- `<remarks>`  Additional detail not suited for `<summary>`
+- `<example>`  Code usage examples
+- `<see>`  Cross-reference another member (`<see cref="OtherMethod"/>`)
+- `<seealso>`  External or related types
 
 ---
 
@@ -118,4 +118,14 @@ The formal name for these comments is:
 They are the C# equivalent of Javadoc in Java and use XML tags to describe code structure.
 
 ---
-```
+
+## Project Overview
+
+This application provides a Windows Forms interface for adjusting subtitle timing to match a video file. Key elements include:
+
+- **Controllers** – contain the application logic. `MainController` loads settings, handles dialogs and processes files.
+- **Views** – Windows Forms classes implementing `IMainView` to interact with the user.
+- **Models** – simple data types such as `AppSettings` and the new `SrtFile` class which parses and modifies SRT subtitles.
+- **Utilities** – helper classes like `MovParser` for reading video durations.
+
+---

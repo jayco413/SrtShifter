@@ -1,22 +1,31 @@
 using System.Text.Json;
-using System.Text.RegularExpressions;
 using System.Globalization;
 using SrtShifter.Models;
 using SrtShifter.Views;
 
 namespace SrtShifter.Controllers
 {
+    /// <summary>
+    /// Coordinates the interaction between the user interface and the business logic.
+    /// </summary>
     public class MainController
     {
         private readonly IMainView _view;
         private readonly string _settingsPath = Path.Combine(Application.StartupPath, "settings.json");
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MainController"/> class.
+        /// </summary>
+        /// <param name="view">The view used to interact with the user.</param>
         public MainController(IMainView view)
         {
             _view = view;
             LoadSettings();
         }
 
+        /// <summary>
+        /// Opens a dialog for the user to select a video file.
+        /// </summary>
         public void SelectVideoFile()
         {
             using OpenFileDialog dlg = new OpenFileDialog();
@@ -29,6 +38,9 @@ namespace SrtShifter.Controllers
             }
         }
 
+        /// <summary>
+        /// Opens a dialog for the user to select an SRT subtitle file.
+        /// </summary>
         public void SelectSrtFile()
         {
             using OpenFileDialog dlg = new OpenFileDialog();
@@ -41,6 +53,9 @@ namespace SrtShifter.Controllers
             }
         }
 
+        /// <summary>
+        /// Processes the selected files and creates a shifted subtitle file.
+        /// </summary>
         public void ProcessFiles()
         {
             try
@@ -67,7 +82,9 @@ namespace SrtShifter.Controllers
                 var dir = Path.GetDirectoryName(srtPath) ?? string.Empty;
                 var newPath = Path.Combine(dir, Path.GetFileNameWithoutExtension(srtPath) + "_shifted.srt");
 
-                ShiftSrtFile(srtPath, newPath, duration);
+                var srt = SrtFile.Load(srtPath);
+                srt.Shift(duration);
+                srt.Save(newPath);
 
                 _view.AppendLog($"New SRT created: {newPath}");
                 _view.AppendLog("Processing finished.");
@@ -78,32 +95,10 @@ namespace SrtShifter.Controllers
             }
         }
 
-        private static void ShiftSrtFile(string sourcePath, string destPath, TimeSpan offset)
-        {
-            var regex = new Regex(@"(?<start>\d{2}:\d{2}:\d{2},\d{3}) --> (?<end>\d{2}:\d{2}:\d{2},\d{3})");
-            using var reader = new StreamReader(sourcePath);
-            using var writer = new StreamWriter(destPath, false);
 
-            string? line;
-            while ((line = reader.ReadLine()) != null)
-            {
-                var match = regex.Match(line);
-                if (match.Success)
-                {
-                    var start = TimeSpan.ParseExact(match.Groups["start"].Value, @"hh\:mm\:ss\,fff", CultureInfo.InvariantCulture);
-                    var end = TimeSpan.ParseExact(match.Groups["end"].Value, @"hh\:mm\:ss\,fff", CultureInfo.InvariantCulture);
-
-                    start += offset;
-                    end += offset;
-
-                    var startTxt = start.ToString(@"hh\:mm\:ss\,fff");
-                    var endTxt = end.ToString(@"hh\:mm\:ss\,fff");
-                    line = $"{startTxt} --> {endTxt}";
-                }
-                writer.WriteLine(line);
-            }
-        }
-
+        /// <summary>
+        /// Loads persisted application settings.
+        /// </summary>
         private void LoadSettings()
         {
             try
@@ -125,6 +120,9 @@ namespace SrtShifter.Controllers
             }
         }
 
+        /// <summary>
+        /// Persists the current application settings to disk.
+        /// </summary>
         private void SaveSettings()
         {
             try
