@@ -1,82 +1,80 @@
-using System.Globalization;
 using System.Text.Json;
 using System.Text.RegularExpressions;
+using System.Globalization;
+using SrtShifter.Models;
+using SrtShifter.Views;
 
-namespace SrtShifter
+namespace SrtShifter.Controllers
 {
-    public partial class frmMain : Form
+    public class MainController
     {
+        private readonly IMainView _view;
         private readonly string _settingsPath = Path.Combine(Application.StartupPath, "settings.json");
 
-        public frmMain()
+        public MainController(IMainView view)
         {
-            InitializeComponent();
+            _view = view;
             LoadSettings();
         }
 
-        private void btnSelectVideoFile_Click(object sender, EventArgs e)
+        public void SelectVideoFile()
         {
             using OpenFileDialog dlg = new OpenFileDialog();
             dlg.Filter = "MOV files (*.mov)|*.mov|All files (*.*)|*.*";
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                txtVideoFilePath.Text = dlg.FileName;
-                AppendLog($"Selected video file: {dlg.FileName}");
+                _view.VideoFilePath = dlg.FileName;
+                _view.AppendLog($"Selected video file: {dlg.FileName}");
                 SaveSettings();
             }
         }
 
-        private void btnSelectSrtFile_Click(object sender, EventArgs e)
+        public void SelectSrtFile()
         {
             using OpenFileDialog dlg = new OpenFileDialog();
             dlg.Filter = "SRT files (*.srt)|*.srt|All files (*.*)|*.*";
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                txtSrtFilePath.Text = dlg.FileName;
-                AppendLog($"Selected SRT file: {dlg.FileName}");
+                _view.SrtFilePath = dlg.FileName;
+                _view.AppendLog($"Selected SRT file: {dlg.FileName}");
                 SaveSettings();
             }
         }
 
-        private void btnProcess_Click(object sender, EventArgs e)
-        {
-            ProcessFiles();
-        }
-
-        private void ProcessFiles()
+        public void ProcessFiles()
         {
             try
             {
-                AppendLog("Processing started...");
+                _view.AppendLog("Processing started...");
 
-                var videoPath = txtVideoFilePath.Text;
-                var srtPath = txtSrtFilePath.Text;
+                var videoPath = _view.VideoFilePath;
+                var srtPath = _view.SrtFilePath;
 
                 if (!File.Exists(videoPath))
                 {
-                    AppendLog("Video file not found.");
+                    _view.AppendLog("Video file not found.");
                     return;
                 }
                 if (!File.Exists(srtPath))
                 {
-                    AppendLog("SRT file not found.");
+                    _view.AppendLog("SRT file not found.");
                     return;
                 }
 
                 var duration = MovParser.GetDuration(videoPath);
-                AppendLog($"Video duration: {duration}");
+                _view.AppendLog($"Video duration: {duration}");
 
                 var dir = Path.GetDirectoryName(srtPath) ?? string.Empty;
                 var newPath = Path.Combine(dir, Path.GetFileNameWithoutExtension(srtPath) + "_shifted.srt");
 
                 ShiftSrtFile(srtPath, newPath, duration);
 
-                AppendLog($"New SRT created: {newPath}");
-                AppendLog("Processing finished.");
+                _view.AppendLog($"New SRT created: {newPath}");
+                _view.AppendLog("Processing finished.");
             }
             catch (Exception ex)
             {
-                AppendLog($"Error: {ex.Message}");
+                _view.AppendLog($"Error: {ex.Message}");
             }
         }
 
@@ -116,14 +114,14 @@ namespace SrtShifter
                     var settings = JsonSerializer.Deserialize<AppSettings>(json);
                     if (settings != null)
                     {
-                        txtVideoFilePath.Text = settings.VideoFilePath ?? string.Empty;
-                        txtSrtFilePath.Text = settings.SrtFilePath ?? string.Empty;
+                        _view.VideoFilePath = settings.VideoFilePath ?? string.Empty;
+                        _view.SrtFilePath = settings.SrtFilePath ?? string.Empty;
                     }
                 }
             }
             catch (Exception ex)
             {
-                AppendLog($"Error loading settings: {ex.Message}");
+                _view.AppendLog($"Error loading settings: {ex.Message}");
             }
         }
 
@@ -133,27 +131,16 @@ namespace SrtShifter
             {
                 var settings = new AppSettings
                 {
-                    VideoFilePath = txtVideoFilePath.Text,
-                    SrtFilePath = txtSrtFilePath.Text
+                    VideoFilePath = _view.VideoFilePath,
+                    SrtFilePath = _view.SrtFilePath
                 };
                 var json = JsonSerializer.Serialize(settings);
                 File.WriteAllText(_settingsPath, json);
             }
             catch (Exception ex)
             {
-                AppendLog($"Error saving settings: {ex.Message}");
+                _view.AppendLog($"Error saving settings: {ex.Message}");
             }
-        }
-
-        private void AppendLog(string text)
-        {
-            txtLogText.AppendText(text + Environment.NewLine);
-        }
-
-        private record AppSettings
-        {
-            public string? VideoFilePath { get; set; }
-            public string? SrtFilePath { get; set; }
         }
     }
 }
