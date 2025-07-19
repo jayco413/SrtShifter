@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "SrtShifterUnitTests (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "SrtShifterUnitTests (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SrtShifter", "SrtShifter\Sr
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SrtShifterSetup", "SrtShifterSetup\SrtShifterSetup.vdproj", "{3C78204C-C713-2B5B-3AE8-94E04EF077B9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SrtShifterUnitTests", "SrtShifterUnitTests\SrtShifterUnitTests.csproj", "{8E100644-EAF0-431F-9EC6-5E1195C14E41}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,12 @@ Global
 		{48C4664A-361C-4A82-93D4-0B2212E77DE7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3C78204C-C713-2B5B-3AE8-94E04EF077B9}.Debug|Any CPU.ActiveCfg = Debug
 		{3C78204C-C713-2B5B-3AE8-94E04EF077B9}.Release|Any CPU.ActiveCfg = Release
+		{8E100644-EAF0-431F-9EC6-5E1195C14E41}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{8E100644-EAF0-431F-9EC6-5E1195C14E41}.Debug|Any CPU.Build.0 = Debug|x64
+		{8E100644-EAF0-431F-9EC6-5E1195C14E41}.Debug|Any CPU.Deploy.0 = Debug|x64
+		{8E100644-EAF0-431F-9EC6-5E1195C14E41}.Release|Any CPU.ActiveCfg = Release|x64
+		{8E100644-EAF0-431F-9EC6-5E1195C14E41}.Release|Any CPU.Build.0 = Release|x64
+		{8E100644-EAF0-431F-9EC6-5E1195C14E41}.Release|Any CPU.Deploy.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
