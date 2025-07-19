@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SrtShifter", "SrtShifter\Sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SrtShifterUnitTests", "SrtShifterUnitTests\SrtShifterUnitTests.csproj", "{8E100644-EAF0-431F-9EC6-5E1195C14E41}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SrtShifterLib", "SrtShifterLib\SrtShifterLib.csproj", "{CD326D44-C601-48B8-B4F3-DE7DC9FBC72D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{8E100644-EAF0-431F-9EC6-5E1195C14E41}.Release|Any CPU.ActiveCfg = Release|x64
 		{8E100644-EAF0-431F-9EC6-5E1195C14E41}.Release|Any CPU.Build.0 = Release|x64
 		{8E100644-EAF0-431F-9EC6-5E1195C14E41}.Release|Any CPU.Deploy.0 = Release|x64
+		{CD326D44-C601-48B8-B4F3-DE7DC9FBC72D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD326D44-C601-48B8-B4F3-DE7DC9FBC72D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD326D44-C601-48B8-B4F3-DE7DC9FBC72D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD326D44-C601-48B8-B4F3-DE7DC9FBC72D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

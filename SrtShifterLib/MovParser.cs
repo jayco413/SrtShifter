@@ -6,7 +6,7 @@ namespace SrtShifter
     /// <summary>
     /// Utility methods for extracting information from MOV files.
     /// </summary>
-    internal static class MovParser
+    public static class MovParser
     {
         /// <summary>
         /// Retrieves the duration of a MOV file from disk.
