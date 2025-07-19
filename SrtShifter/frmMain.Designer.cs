@@ -40,7 +40,7 @@
             // 
             btnSelectVideoFile.Location = new Point(12, 12);
             btnSelectVideoFile.Name = "btnSelectVideoFile";
-            btnSelectVideoFile.Size = new Size(192, 34);
+            btnSelectVideoFile.Size = new Size(192, 31);
             btnSelectVideoFile.TabIndex = 0;
             btnSelectVideoFile.Text = "Select Video File...";
             btnSelectVideoFile.UseVisualStyleBackColor = true;
@@ -49,21 +49,21 @@
             // 
             txtVideoFilePath.Location = new Point(210, 12);
             txtVideoFilePath.Name = "txtVideoFilePath";
-            txtVideoFilePath.Size = new Size(578, 31);
+            txtVideoFilePath.Size = new Size(575, 31);
             txtVideoFilePath.TabIndex = 1;
             // 
             // txtSrtFilePath
             // 
-            txtSrtFilePath.Location = new Point(210, 52);
+            txtSrtFilePath.Location = new Point(210, 51);
             txtSrtFilePath.Name = "txtSrtFilePath";
-            txtSrtFilePath.Size = new Size(578, 31);
+            txtSrtFilePath.Size = new Size(575, 31);
             txtSrtFilePath.TabIndex = 3;
             // 
             // btnSelectSrtFile
             // 
-            btnSelectSrtFile.Location = new Point(12, 52);
+            btnSelectSrtFile.Location = new Point(12, 51);
             btnSelectSrtFile.Name = "btnSelectSrtFile";
-            btnSelectSrtFile.Size = new Size(192, 34);
+            btnSelectSrtFile.Size = new Size(192, 31);
             btnSelectSrtFile.TabIndex = 2;
             btnSelectSrtFile.Text = "Select Srt File...";
             btnSelectSrtFile.UseVisualStyleBackColor = true;
@@ -79,9 +79,9 @@
             // 
             // btnProcess
             // 
-            btnProcess.Location = new Point(12, 92);
+            btnProcess.Location = new Point(12, 90);
             btnProcess.Name = "btnProcess";
-            btnProcess.Size = new Size(776, 34);
+            btnProcess.Size = new Size(773, 34);
             btnProcess.TabIndex = 5;
             btnProcess.Text = "Process";
             btnProcess.UseVisualStyleBackColor = true;
@@ -90,7 +90,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 500);
+            ClientSize = new Size(797, 500);
             Controls.Add(btnProcess);
             Controls.Add(txtLogText);
             Controls.Add(txtSrtFilePath);
