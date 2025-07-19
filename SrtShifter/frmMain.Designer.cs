@@ -33,6 +33,7 @@
             txtSrtFilePath = new TextBox();
             btnSelectSrtFile = new Button();
             txtLogText = new TextBox();
+            btnProcess = new Button();
             SuspendLayout();
             // 
             // btnSelectVideoFile
@@ -69,18 +70,28 @@
             // 
             // txtLogText
             // 
-            txtLogText.Location = new Point(15, 92);
+            txtLogText.Location = new Point(12, 132);
             txtLogText.Multiline = true;
             txtLogText.Name = "txtLogText";
             txtLogText.ScrollBars = ScrollBars.Both;
-            txtLogText.Size = new Size(773, 346);
+            txtLogText.Size = new Size(773, 356);
             txtLogText.TabIndex = 4;
+            // 
+            // btnProcess
+            // 
+            btnProcess.Location = new Point(12, 92);
+            btnProcess.Name = "btnProcess";
+            btnProcess.Size = new Size(776, 34);
+            btnProcess.TabIndex = 5;
+            btnProcess.Text = "Process";
+            btnProcess.UseVisualStyleBackColor = true;
             // 
             // frmMain
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 500);
+            Controls.Add(btnProcess);
             Controls.Add(txtLogText);
             Controls.Add(txtSrtFilePath);
             Controls.Add(btnSelectSrtFile);
@@ -99,5 +110,6 @@
         private TextBox txtSrtFilePath;
         private Button btnSelectSrtFile;
         private TextBox txtLogText;
+        private Button btnProcess;
     }
 }
