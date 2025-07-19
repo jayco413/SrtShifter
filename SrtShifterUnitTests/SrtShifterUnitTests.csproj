@@ -10,8 +10,7 @@
     <PackageReference Include="MSTest.TestFramework" Version="3.9.3" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\SrtShifter\MovParser.cs" Link="MovParser.cs" />
-    <Compile Include="..\SrtShifter\Models\SrtFile.cs" Link="SrtFile.cs" />
+    <ProjectReference Include="..\SrtShifterLib\SrtShifterLib.csproj" />
     <None Include="sample.srt" CopyToOutputDirectory="PreserveNewest" />
     <None Include="sample.mov" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
