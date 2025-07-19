@@ -91,7 +91,7 @@ namespace SrtShifter.Controllers
             }
             catch (Exception ex)
             {
-                _view.AppendLog($"Error: {ex.Message}");
+                _view.AppendLog($"Error: {ex}");
             }
         }
 

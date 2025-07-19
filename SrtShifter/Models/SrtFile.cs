@@ -88,7 +88,7 @@ namespace SrtShifter.Models
             foreach (var entry in Entries)
             {
                 writer.WriteLine(entry.Index);
-                writer.WriteLine(@$"{entry.Start:hh\\:mm\\:ss\\,fff} --> {entry.End:hh\\:mm\\:ss\\,fff}");
+                writer.WriteLine($"{entry.Start:hh\\:mm\\:ss\\,fff} --> {entry.End:hh\\:mm\\:ss\\,fff}");
                 foreach (var line in entry.Lines)
                 {
                     writer.WriteLine(line);
